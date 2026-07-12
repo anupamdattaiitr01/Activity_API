@@ -6,10 +6,17 @@ const port = 3000;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-//1. GET a random joke
+//1. GET a random Activity
 app.get ("/random" , (req, res)=>{
   const randomIndex = Math.floor(Math.random() * activities.length);
   res.json  (activities[randomIndex]);
+})
+
+// Geting a specific activity by id
+app.get ("/activities/:id" , (req, res) =>{
+  const id = parseInt (req.params.id);
+  const foundActivity = activities.find((act) => act.id === id);
+  res.json (foundActivity);
 })
 
 app.listen(port, () => {
