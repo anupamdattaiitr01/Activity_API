@@ -19,6 +19,13 @@ app.get ("/activities/:id" , (req, res) =>{
   res.json (foundActivity);
 })
 
+// Getting specific type of the activity
+app.get ("/filter" , (req, res) =>{
+  const type = req.query.type;
+  const foundActivities = activities.filter ((tmp) => tmp.activityType ===type );
+  res.json(foundActivities);
+})
+
 app.listen(port, () => {
   console.log(`Successfully started server on port ${port}.`);
 });
