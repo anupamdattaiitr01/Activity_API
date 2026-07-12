@@ -26,6 +26,20 @@ app.get ("/filter" , (req, res) =>{
   res.json(foundActivities);
 })
 
+// Posting new joke in the list
+app.post ("/activities" , (req, res) =>{
+  const id = activities.length +1;
+  const add_activity ={
+    id: id,
+    activityText: req.body.text,
+    activityType: req.body.type,
+  }
+
+  activities.push (add_activity);
+  console.log (activities.slice(-1));
+  res.json(add_activity);
+})
+
 app.listen(port, () => {
   console.log(`Successfully started server on port ${port}.`);
 });
