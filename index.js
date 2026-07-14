@@ -38,6 +38,20 @@ app.post ("/activities" , (req, res) =>{
   activities.push (add_activity);
   console.log (activities.slice(-1));
   res.json(add_activity);
+});
+
+app.put ("/activities/:id", (req, res)=>
+{
+  const id = parseInt (req.params.id);
+  const replaced_activity = {
+    id : id,
+    activityText: req.body.text,
+    activityType: req.body.type,
+  };
+
+  const ind = activities.findIndex ((tmp) => tmp.id === id);
+  activities[ind] = replaced_activity;
+  res.json (replaced_activity);
 })
 
 app.listen(port, () => {
